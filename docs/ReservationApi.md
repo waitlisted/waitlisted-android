@@ -65,9 +65,19 @@ Delete a reservation.
 ### Example
 ```java
 // Import classes:
+//import co.waitlisted.ApiClient;
 //import co.waitlisted.ApiException;
+//import co.waitlisted.Configuration;
+//import co.waitlisted.auth.*;
 //import co.waitlisted.api.ReservationApi;
 
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: api_key
+ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
+api_key.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.setApiKeyPrefix("Token");
 
 ReservationApi apiInstance = new ReservationApi();
 ReservationRequest body = new ReservationRequest(); // ReservationRequest | Reservation Data
@@ -91,7 +101,7 @@ null (empty response body)
 
 ### Authorization
 
-No authorization required
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 

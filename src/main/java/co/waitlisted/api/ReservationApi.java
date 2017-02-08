@@ -217,7 +217,7 @@ public class ReservationApi {
             });
         }
 
-        String[] wllocalVarAuthNames = new String[] {  };
+        String[] wllocalVarAuthNames = new String[] { "api_key" };
         return wlapiClient.buildCall(wllocalVarPath, "DELETE", wllocalVarQueryParams, wllocalVarPostBody, wllocalVarHeaderParams, wllocalVarFormParams, wllocalVarAuthNames, progressRequestListener);
     }
 
