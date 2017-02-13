@@ -38,10 +38,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
-import co.waitlisted.models.Reservation;
+import co.waitlisted.models.ReservationRequest;
 import co.waitlisted.models.ReservationsResponse;
 import co.waitlisted.models.ErrorResponse;
-import co.waitlisted.models.ReservationRequest;
+import co.waitlisted.models.Reservation;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -68,6 +68,112 @@ public class ReservationApi {
         this.wlapiClient = apiClient;
     }
 
+    /* Build call for activateReservation */
+    private com.squareup.okhttp.Call activateReservationCall(ReservationRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object wllocalVarPostBody = body;
+        
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling activateReservation(Async)");
+        }
+        
+
+        // create path and map variables
+        String wllocalVarPath = "/reservations/activate".replaceAll("\\{format\\}","json");
+
+        List<Pair> wllocalVarQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> wllocalVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> wllocalVarFormParams = new HashMap<String, Object>();
+
+        final String[] wllocalVarAccepts = {
+            "application/json"
+        };
+        final String wllocalVarAccept = wlapiClient.selectHeaderAccept(wllocalVarAccepts);
+        if (wllocalVarAccept != null) wllocalVarHeaderParams.put("Accept", wllocalVarAccept);
+
+        final String[] wllocalVarContentTypes = {
+            "application/json"
+        };
+        final String wllocalVarContentType = wlapiClient.selectHeaderContentType(wllocalVarContentTypes);
+        wllocalVarHeaderParams.put("Content-Type", wllocalVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] wllocalVarAuthNames = new String[] { "api_key" };
+        return wlapiClient.buildCall(wllocalVarPath, "POST", wllocalVarQueryParams, wllocalVarPostBody, wllocalVarHeaderParams, wllocalVarFormParams, wllocalVarAuthNames, progressRequestListener);
+    }
+
+    /**
+     * 
+     * Activate a reservation.
+     * @param body Reservation Data (required)
+     * @return ReservationsResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ReservationsResponse activateReservation(ReservationRequest body) throws ApiException {
+        ApiResponse<ReservationsResponse> wlresp = activateReservationWithHttpInfo(body);
+        return wlresp.getData();
+    }
+
+    /**
+     * 
+     * Activate a reservation.
+     * @param body Reservation Data (required)
+     * @return ApiResponse&lt;ReservationsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<ReservationsResponse> activateReservationWithHttpInfo(ReservationRequest body) throws ApiException {
+        com.squareup.okhttp.Call wlcall = activateReservationCall(body, null, null);
+        Type wllocalVarReturnType = new TypeToken<ReservationsResponse>(){}.getType();
+        return wlapiClient.execute(wlcall, wllocalVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Activate a reservation.
+     * @param body Reservation Data (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call activateReservationAsync(ReservationRequest body, final ApiCallback<ReservationsResponse> wlcallback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call wlcall = activateReservationCall(body, progressListener, progressRequestListener);
+        Type wllocalVarReturnType = new TypeToken<ReservationsResponse>(){}.getType();
+        wlapiClient.executeAsync(wlcall, wllocalVarReturnType, wlcallback);
+        return wlcall;
+    }
     /* Build call for createReservation */
     private com.squareup.okhttp.Call createReservationCall(Reservation body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object wllocalVarPostBody = body;

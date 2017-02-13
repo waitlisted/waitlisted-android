@@ -4,10 +4,66 @@ All URIs are relative to *https://www.waitlisted.co/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**activateReservation**](ReservationApi.md#activateReservation) | **POST** /reservations/activate | 
 [**createReservation**](ReservationApi.md#createReservation) | **POST** /reservations | 
 [**deleteReservation**](ReservationApi.md#deleteReservation) | **DELETE** /reservations | 
 [**getReservation**](ReservationApi.md#getReservation) | **GET** /reservations | 
 
+
+<a name="activateReservation"></a>
+# **activateReservation**
+> ReservationsResponse activateReservation(body)
+
+
+
+Activate a reservation.
+
+### Example
+```java
+// Import classes:
+//import co.waitlisted.ApiClient;
+//import co.waitlisted.ApiException;
+//import co.waitlisted.Configuration;
+//import co.waitlisted.auth.*;
+//import co.waitlisted.api.ReservationApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: api_key
+ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
+api_key.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.setApiKeyPrefix("Token");
+
+ReservationApi apiInstance = new ReservationApi();
+ReservationRequest body = new ReservationRequest(); // ReservationRequest | Reservation Data
+try {
+    ReservationsResponse result = apiInstance.activateReservation(body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ReservationApi#activateReservation");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ReservationRequest**](ReservationRequest.md)| Reservation Data |
+
+### Return type
+
+[**ReservationsResponse**](ReservationsResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="createReservation"></a>
 # **createReservation**
